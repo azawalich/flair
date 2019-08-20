@@ -21,7 +21,8 @@ class tSNE(_Transform):
     def __init__(self):
         super().__init__()
 
-        self.transform = TSNE(n_components=2, verbose=1, perplexity=40, n_iter=300)
+        self.transform = TSNE(n_components=2, verbose=1,
+                              perplexity=40, n_iter=300)
 
 
 def split_to_spans(s: Sentence):
@@ -81,7 +82,8 @@ class Visualizer(object):
             strs = [x.text for x in sentence.tokens]
 
             for i, token in enumerate(strs):
-                prop = '<b><font color="red"> {token} </font></b>'.format(token=token)
+                prop = '<b><font color="red"> {token} </font></b>'.format(
+                    token=token)
 
                 prop = " ".join(strs[max(i - 4, 0): i]) + prop
                 prop = prop + " ".join(strs[i + 1: min(len(strs), i + 5)])
@@ -190,7 +192,8 @@ class Visualizer(object):
                 escaped_fragment = html.escape(fragment).replace('\n', '<br/>')
                 if tag:
                     escaped_fragment = TAGGED_ENTITY.format(entity=escaped_fragment,
-                                                            label=labels.get(tag, "O"),
+                                                            label=labels.get(
+                                                                tag, "O"),
                                                             color=colors.get(tag, "#ddd"))
                 tagged_html.append(escaped_fragment)
 

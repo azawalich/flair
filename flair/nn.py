@@ -153,8 +153,10 @@ class LockedDropout(torch.nn.Module):
         if not self.training or not self.dropout_rate:
             return x
 
-        m = x.data.new(1, x.size(1), x.size(2)).bernoulli_(1 - self.dropout_rate)
-        mask = torch.autograd.Variable(m, requires_grad=False) / (1 - self.dropout_rate)
+        m = x.data.new(1, x.size(1), x.size(
+            2)).bernoulli_(1 - self.dropout_rate)
+        mask = torch.autograd.Variable(
+            m, requires_grad=False) / (1 - self.dropout_rate)
         mask = mask.expand_as(x)
         return mask * x
 
